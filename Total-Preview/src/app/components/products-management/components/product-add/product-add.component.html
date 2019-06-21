@@ -1,0 +1,29 @@
+<form (ngSubmit)="onSubmit()">
+	<legend>ADD PRODUCT</legend>
+
+	<div class="form-group">
+		<label for="">Name : </label>
+		<input type="text" class="form-control" [(ngModel)]="product.name" [ngModelOptions]="{standalone: true}">
+	</div>
+
+	<div class="form-group">
+		<label for="">Price : </label>
+		<input type="number" class="form-control" [(ngModel)]="product.price" [ngModelOptions]="{standalone: true}">
+	</div>
+
+	<div class="radio">
+		<label>
+			<input type="radio" name="status" id="inputStatus" value="true" [(ngModel)]="product.status"  [ngModelOptions]="{standalone: true}" checked="checked">
+			Active
+		</label>
+		<br>
+		<label>
+			<input type="radio" name="status" id="inputStatus" value="false" [(ngModel)]="product.status" [ngModelOptions]="{standalone: true}">
+			Deactive
+		</label>
+	</div>
+	
+	
+	
+	<button type="submit" class="btn btn-primary">ADD</button>
+</form>

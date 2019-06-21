@@ -1,0 +1,33 @@
+<button type="button" class="btn btn-primary" (click)="onAdd()">Add product</button>
+<hr>
+
+<ul class="nav nav-pills">
+    <li ><a [routerLink]="['/products']" [class.active]="Progress == 0">View All</a></li>
+    <li><a [routerLink]="['/products' , { status : false }]"  [class.active]="Progress == -1">Dactive</a></li>
+    <li><a [routerLink]="['/products' , { status : true}]"  [class.active]="Progress == 1">Active 	</a></li>
+</ul>
+<input type="text"  class="form-control" [(ngModel)]="inputValue"><br>
+
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th (click)="onSort('name')">Name</th>
+			<th (click)="onSort('price')">Price</th>
+			<th (click)="onSort('status')">Status</th>
+			<th *ngIf="authorize == 1">Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let item of products | sort : sortString : sortValue | filter : inputValue ; let i = index " [routerLink]="['/product' , item.id]">
+			<td> {{ i + 1 }}</td>
+			<td title="{{item.name | capitalize}}"> {{ item.name | capitalize | formatText : 0 : 36}}</td>
+			<td> {{ item.price | currency : 'VND' }}</td>
+			<td> {{ (item.status == "true" || item.status == true) ? 'Active' : 'Deactive'}}</td> 
+			<td *ngIf="authorize == 1">
+				<button type="button" class="btn btn-success" [routerLink]="['/product' , item.id , 'edit']">Edit</button>
+				<button type="button" class="btn btn-danger"  [routerLink]="[products]" (click)="onDelete(item , $event)">Delete</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

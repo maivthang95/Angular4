@@ -1,0 +1,17 @@
+<ng-container *ngIf="product; else noProduct">
+	<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title"># {{ product.id }}</h3>
+	</div>
+	<div class="panel-body">
+		<h4>{{ product.name }}</h4>
+		<h4>{{ product.price | currency : 'VND' }}</h4>
+		<h4>{{ product.status ? 'Active' : 'Deactive'}}</h4>
+		<hr>
+		<button type="button" class="btn btn-success" [style.margin-right.px]="10" [routerLink]="['/product' , product.id , 'edit']">Edit</button>
+		<button type="button" class="btn btn-danger" (click)="onDelete()">Delete</button>
+	</div>
+	
+</div>
+</ng-container>
+<ng-template #noProduct></ng-template>

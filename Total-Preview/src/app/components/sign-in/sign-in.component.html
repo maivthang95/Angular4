@@ -1,0 +1,71 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			<form [formGroup]="customerForm" (submit)="onSubmit()" autocomplete="false">
+				<legend>Form title</legend>
+
+				<div class="form-group">
+					<label for="">User name: </label>
+					<input type="text" name="txtUsername" class="form-control" formControlName="username" >
+					<app-sign-up-message [control]="customerForm.controls.username" [name-control]="'UserName'"></app-sign-up-message>
+				</div>
+
+				<div class="form-group">
+					<label for="">Password: </label>
+					<input type="password" name="txtPassword" class="form-control" formControlName="password"  [(ngModel)]="password">
+					<app-sign-up-message [control]="customerForm.controls.password" [name-control]="'Password'"></app-sign-up-message>
+				</div>
+
+				<div class="form-group">
+					<label for="">Re-password: </label>
+					<input type="password" name="txtRePassword" class="form-control" formControlName="repassword" [(ngModel)]="repassword">
+					<app-sign-up-message [control]="customerForm.controls.repassword" [name-control]="'RePassword'"></app-sign-up-message>
+				</div>
+
+				<hr>
+				<h4>Personal Information</h4>
+
+				<div class="form-group">
+					<label for="">Fullname :  </label>
+					<input type="text" name="txtFullName" class="form-control" formControlName="fullname"> 
+					<app-sign-up-message [control]="customerForm.controls.fullname" [name-control]="'FullName'"></app-sign-up-message>
+				</div>
+
+				<div class="form-group">
+					<label for="">DateBirth :  </label>
+					<input type="date" class="form-control" formControlName="datebirth">
+					<app-sign-up-message [control]="customerForm.controls.datebirth" [name-control]="'DateBirth'"></app-sign-up-message>
+				</div>
+
+				<div class="form-group">
+				<label for="">Country :
+					<select name="" id="input" class="form-control" required="required"  formControlName="country" 
+					>
+						<option value="{{country}}" *ngFor="let country of country_list" [selected]="country == 'Vietnam'"> {{country}}</option>
+					</select>
+				</label>
+				</div>
+
+				<div class="form-group">
+					<label for="">Email:  </label>
+					<input type="text" name="txtEmail" class="form-control" formControlName="email">
+					<app-sign-up-message [control]="customerForm.controls.email" [name-control]="'Email'"></app-sign-up-message>
+				</div>
+
+				<div class="form-group">
+					<label for="">Phone:  </label>
+					<input type="text" name="txtPhone" class="form-control" formControlName="phone" >
+					<app-sign-up-message [control]="customerForm.controls.phone" [name-control]="'Phone'"></app-sign-up-message>
+				</div>
+
+
+
+				<button type="submit" class="btn btn-primary">Submit</button>
+
+			</form>
+			<span class="label label-danger" *ngIf="error == -1">Password And Repassword are not the same</span>
+			<span class="label label-success" *ngIf="error == 1">Success</span>
+			<span class="label label-danger" *ngIf="error ==-2">Username has existed</span>
+		</div>
+	</div>
+</div>
